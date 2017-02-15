@@ -29,6 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
+        if PFUser.current() != nil {
+            print("There is a current user")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewControler")
+            
+            self.window?.rootViewController = vc
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "UserDidLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            
+            self.window?.rootViewController = vc
+        }
         return true
     }
 

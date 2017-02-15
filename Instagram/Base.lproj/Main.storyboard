@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="118.125" y="122.53521126760563"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="Scs-Mx-sKG">
             <objects>
-                <viewController id="uBJ-Id-Ioj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="uBJ-Id-Ioj" customClass="HomeViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0wB-5E-jse"/>
                         <viewControllerLayoutGuide type="bottom" id="Acc-Am-3sw"/>
