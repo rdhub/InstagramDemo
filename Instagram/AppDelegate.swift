@@ -33,14 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("There is a current user")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewControler")
+            let vc = storyboard.instantiateViewController(withIdentifier: "InstagramTabBarController") as!UITabBarController
             
             self.window?.rootViewController = vc
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "UserDidLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            let vc = storyboard.instantiateInitialViewController()
             
             self.window?.rootViewController = vc
         }
