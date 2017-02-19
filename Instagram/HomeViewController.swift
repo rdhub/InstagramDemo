@@ -23,8 +23,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
+        self.loadData()
         //construct PFQuery
+        /*let query = PFQuery(className: "Post")
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.limit = 20
+        
+        // fetch data asynchronously
+        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) -> Void in
+            if let posts = posts {
+                // do something with the data fetched
+                self.posts = posts
+                self.tableView.reloadData()
+            } else {
+                // handle error
+                print("\(error!.localizedDescription)")
+            }
+        }*/
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(HomeViewController.onTimer), userInfo: nil, repeats: true)
+    }
+    
+    func loadData() {
+        // construct PFQuery
         let query = PFQuery(className: "Post")
         query.order(byDescending: "createdAt")
         query.includeKey("author")
@@ -41,9 +62,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("\(error!.localizedDescription)")
             }
         }
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(HomeViewController.onTimer), userInfo: nil, repeats: true)
     }
-
     func onTimer() {
         // construct PFQuery
         let query = PFQuery(className: "Post")
