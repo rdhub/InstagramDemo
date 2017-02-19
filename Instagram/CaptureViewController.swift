@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageButton: UIButton!
     
@@ -23,6 +23,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Do any additional setup after loading the view.
         cancelButton.isEnabled = false
         submitButton.isEnabled = false
+        captionField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,34 +60,43 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
     @IBAction func onScreenTap(_ sender: AnyObject) {
         view.endEditing(true)
     }
     
-    @IBAction func onCancel(_ sender: AnyObject) {
+    func resetDefaults() {
         imageButton.setBackgroundImage(nil, for: .normal)
         imageButton.setTitle("Tap to select or take a photo", for: .normal)
         captionField.text = nil
         cancelButton.isEnabled = false
         submitButton.isEnabled = false
     }
+    @IBAction func onCancel(_ sender: AnyObject) {
+        self.resetDefaults()
+    }
     @IBAction func onSubmit(_ sender: AnyObject) {
         if let image = imageButton.backgroundImage(for: .normal) {
             Post.postUserImage(image: image, withCaption: captionField.text) { (success:Bool, error:Error?) in
                 if success {
                     print("Successfully posted")
+                    self.resetDefaults()
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    //let home = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as  UIViewController
-                
-                    let tabBarController = storyboard.instantiateViewController(withIdentifier: "InstagramTabBarController") as! UITabBarController
-                        tabBarController.selectedIndex = 1
+                    let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                    
+                    //homeVC.loadData()
+                    self.tabBarController?.selectedIndex = 0
                 } else {
                     print("\(error!.localizedDescription)")
                 }
             }
         }
     }
+    
     /*
     // MARK: - Navigation
 

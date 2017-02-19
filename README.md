@@ -2,7 +2,7 @@
 
 **InstagramDemo** is a photo sharing app using Parse as its backend.
 
-Time spent: **4** hours spent in total
+Time spent: **7** hours spent in total
 
 ## User Stories
 
@@ -12,7 +12,7 @@ The following **required** functionality is completed:
 - [x] User can log in and log out of his or her account
 - [x] The current signed in user is persisted across app restarts
 - [x] User can take a photo, add a caption, and post it to "Instagram"
-- [ ] User can view the last 20 posts submitted to "Instagram"
+- [x] User can view the last 20 posts submitted to "Instagram"
 
 The following **optional** features are implemented:
 
@@ -43,6 +43,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+I had an issue with updating the home view with the new post that was just created. I don't know why but the tableView was always nil when I tried updating it, even though it initially loaded all the data correctly.
 
 ## License
 
