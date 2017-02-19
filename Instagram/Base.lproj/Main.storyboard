@@ -47,7 +47,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZW9-eg-aff">
                                 <rect key="frame" x="79" y="264" width="55" height="30"/>
@@ -81,7 +81,7 @@
         <!--Profile-->
         <scene sceneID="T9v-Aq-Dvr">
             <objects>
-                <viewController id="Mrm-hh-tuY" customClass="ProfileViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="Mrm-hh-tuY" customClass="ProfileViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sMv-rv-Nz5"/>
                         <viewControllerLayoutGuide type="bottom" id="je1-dH-FmS"/>
@@ -101,7 +101,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="ejt-WS-wzP"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-icon" id="ejt-WS-wzP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZiD-U9-ho2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,11 +124,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5Pj-wq-ONQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="instagramPostCell" id="5Pj-wq-ONQ">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Pj-wq-ONQ" id="fgT-n5-goc">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -137,7 +137,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="AD4-MB-6LJ"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_icon" id="AD4-MB-6LJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUc-Sx-BJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +165,7 @@
         <!--Capture-->
         <scene sceneID="96S-QQ-5WR">
             <objects>
-                <viewController id="dTs-pD-Wsi" customClass="CaptureViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CaptureViewController" id="dTs-pD-Wsi" customClass="CaptureViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uBF-0h-V6v"/>
                         <viewControllerLayoutGuide type="bottom" id="iJ9-6s-UhZ"/>
@@ -173,13 +173,70 @@
                     <view key="view" contentMode="scaleToFill" id="Blo-jt-82k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBg-RY-aMc">
+                                <rect key="frame" x="34" y="43" width="253" height="204"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Tap to select or take a photo">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPhotoTap:" destination="dTs-pD-Wsi" eventType="touchUpInside" id="kfL-rb-FVd"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a caption..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="522-KD-moR">
+                                <rect key="frame" x="34" y="269" width="253" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcu-La-Wza">
+                                <rect key="frame" x="72" y="369" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="onSubmit:" destination="dTs-pD-Wsi" eventType="touchUpInside" id="lPv-Au-RPA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPB-UH-DWp">
+                                <rect key="frame" x="200" y="369" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancel:" destination="dTs-pD-Wsi" eventType="touchUpInside" id="hxT-0s-UpD"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Lsx-fg-U2P" appends="YES" id="oqS-fY-sHb"/>
+                        </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Capture" id="a8W-mO-NVh"/>
+                    <tabBarItem key="tabBarItem" title="Capture" selectedImage="glyph-logo" id="a8W-mO-NVh"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="iPB-UH-DWp" id="7oc-aQ-6TR"/>
+                        <outlet property="captionField" destination="522-KD-moR" id="zzj-t7-v7X"/>
+                        <outlet property="imageButton" destination="bBg-RY-aMc" id="Ykc-Cq-gnL"/>
+                        <outlet property="submitButton" destination="kcu-La-Wza" id="J8b-G0-EHW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w61-yY-jq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Lsx-fg-U2P">
+                    <connections>
+                        <action selector="onScreenTap:" destination="dTs-pD-Wsi" id="vtK-CE-4yf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1688" y="123"/>
+            <point key="canvasLocation" x="1687.5" y="122.53521126760563"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="glyph-logo" width="29" height="29"/>
+        <image name="home_icon" width="29" height="29"/>
+        <image name="profile-icon" width="29" height="29"/>
+    </resources>
 </document>
