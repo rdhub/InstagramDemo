@@ -80,15 +80,18 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     @IBAction func onSubmit(_ sender: AnyObject) {
         if let image = imageButton.backgroundImage(for: .normal) {
-            Post.postUserImage(image: image, withCaption: captionField.text) { (success:Bool, error:Error?) in
-                if success {
+            
+            Post.postUserImage(image: image, withCaption: captionField.text) { (post:PFObject?, error:Error?) in
+                if post != nil {
                     print("Successfully posted")
                     self.resetDefaults()
                     
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                     
-                    //homeVC.loadData()
+                    let homeVC = self.tabBarController?.viewControllers![0] as! HomeViewController
+                    
+                    homeVC.posts!.insert(post!, at: 0)
+                    homeVC.tableView.reloadData()
+                    
                     self.tabBarController?.selectedIndex = 0
                 } else {
                     print("\(error!.localizedDescription)")
